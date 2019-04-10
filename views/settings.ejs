@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<% include partials/head %>
+</head>
+<body class="bg-secondary">
+
+	<% include partials/menu %>
+
+	<main>
+	<div class="container mt-5">
+
+		<h2 class="text-light">Impostazioni</h2>
+		<% include partials/alert %>
+
+		<div class="table-responsive bg-light">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Email</th>
+						<th scope="col">Registrazione</th>
+						<th scope="col">Ultimo Accesso</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<%=user.email%>
+						</td>
+						<td>
+							<%=moment(user.data_registrazione).format('DD-MM-YYYY HH:mm:ss');%>
+						</td>
+						<td>
+							<%=moment(user.data_ultimo_accesso).format('DD-MM-YYYY HH:mm:ss');%>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="accordion" id="accordionExample">
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+							aria-controls="collapseOne">Utenti</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+					<div class="card-body">
+						<form action="doChangePassword" method="post">
+							<div class="fom-group row">
+								<div class="col">
+									<label for="inputCurPassword">Password corrente</label>
+									<input id="inputCurPassword" name="oldPassword" type="password" class="form-control" required>
+								</div>
+								<div class="col">
+									<label for="inputNewPassword">Nuova password</label>
+									<input id="inputNewPassword" name="newPassword" type="password" class="form-control" required>
+								</div>
+								<div class="col">
+									<label for="inputConfirmPassword">Conferma nuova password</label>
+									<input id="inputConfirmPassword" name="confirmPassword" type="password" class="form-control" required>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary mb-2">Modifica</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<% if (user.tipo_utente == 1) { %>
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+							aria-controls="collapseOne">Gestione utenti</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+					<div class="card-body">
+						<form action="" method="post">
+							<div class="table-responsive bg-light">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th scope="col">Username</th>
+												<th scope="col">Email</th>
+												<th scope="col">Stato</th>
+												<th scope="col">Registrazione</th>
+												<th scope="col">Ultimo Accesso</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% users.forEach(function(man){ %>
+											<tr>
+												<td>
+													<%=man.username%>
+												</td>
+												<td>
+													<%=man.email%>
+												</td>
+												<td>
+													<input type="checkbox" <% if (man.stato === 'ATTIVO') { %>checked<% } %>>
+												</td>
+												<td>
+													<%=moment(man.data_registrazione).format('DD-MM-YYYY HH:mm:ss');%>
+												</td>
+												<td>
+													<%=moment(man.data_ultimo_accesso).format('DD-MM-YYYY HH:mm:ss');%>
+												</td>
+											</tr>
+											<% }); %>
+										</tbody>
+									</table>
+								</div>
+							<button type="submit" class="btn btn-primary mb-2">Modifica</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<% } %>
+		</div>
+	</div>
+	</main>
+
+</body>
+</html>

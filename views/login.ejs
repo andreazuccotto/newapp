@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include partials/head %>
+	<link rel="stylesheet" href="/stylesheets/signin.css">
+</head>
+<body>
+	<div class="container text-center">
+		<form class="form-signin" method="post">
+			<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+			<label for="inputUsername" class="sr-only">Nome utente</label>
+			<input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
+		</form>
+		<% if (typeof error !== 'undefined') { %>
+			<div id="alertBox" class="alert alert-danger" role="alert"><%=error%></div>
+		<% } %>
+		<a class="btn btn-link" href="/login/recuperaPassword">Password dimenticata?</a>
+		<a class="btn btn-link" href="/login/registrati">Registrati</a>
+	</div>
+</body>
+</html>

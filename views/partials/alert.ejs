@@ -1,0 +1,8 @@
+<% try {
+	if (alert.severity === 'info') { %>
+	<div class="alert alert-success" role="alert"><%=alert.text%></div>
+<% } else if (alert.severity === 'warn') { %>
+	<div class="alert alert-warning" role="alert"><%=alert.text%></div>
+<% } else { %>
+	<div class="alert alert-danger" role="alert"><%=alert.text%></div>
+<% }} catch(e){} %>

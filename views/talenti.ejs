@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<% include partials/head %>
+</head>
+<body class="bg-secondary">
+
+	<% include partials/menu %>
+
+	<main>
+	<div class="container mt-5">
+
+		<h2 class="text-light">Talenti</h2>
+
+		<div class="accordion" id="accordionTalenti">
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+							aria-controls="collapseOne">Inserisci talento</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionTalenti">
+					<div class="card-body">
+						<form class="form-inline" action="" method="post">
+							<div class="form-group mb-2">
+								<label for="inputTitolo">Titolo</label>
+								<input id="inputTitolo" name="titolo" class="form-control" required>
+							</div>
+							<div class="form-group mb-2">
+								<label for="inputTesto">Testo</label>
+								<textarea id="inputTesto" name="testo" class="form-control" rows="3" required></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary mb-2">Aggiungi</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+							aria-controls="collapseTwo">Tabella talenti</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionTalenti">
+					<div class="card-body">
+						<div class="table-responsive bg-light">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Titolo</th>
+										<th scope="col">Testo</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${firstname}" var="talento">
+										<tr>
+											<td></td>
+											<td></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+
+</body>
+</html>
