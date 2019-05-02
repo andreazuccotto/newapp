@@ -15,10 +15,7 @@ var transporter = nodemailer.createTransport({
 	host: 'out.alice.it',
 	port: 587,
 	secure: false,
-	auth: {
-		user: 'zuccotto.andrea@alice.it',
-		pass: 'spartan118'
-	}
+	auth: auth
 });
 
 var mailOptions = {
