@@ -38,19 +38,19 @@
 			</table>
 		</div>
 
-		<div class="accordion" id="accordionExample">
+		<div class="accordion mt-4" id="accordion">
 			<div class="card">
 				<div class="card-header" id="headingOne">
 					<h2 class="mb-0">
 						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-							aria-controls="collapseOne">Utenti</button>
+							aria-controls="collapseOne">Utente</button>
 					</h2>
 				</div>
 
-				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 					<div class="card-body">
 						<form action="doChangePassword" method="post">
-							<div class="fom-group row">
+							<div class="fom-group row mb-3">
 								<div class="col">
 									<label for="inputCurPassword">Password corrente</label>
 									<input id="inputCurPassword" name="oldPassword" type="password" class="form-control" required>
@@ -71,29 +71,30 @@
 			</div>
 			<% if (user.tipo_utente == 1) { %>
 			<div class="card">
-				<div class="card-header" id="headingOne">
+				<div class="card-header" id="headingTwo">
 					<h2 class="mb-0">
-						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-							aria-controls="collapseOne">Gestione utenti</button>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+							aria-controls="collapseTwo">Gestione utenti</button>
 					</h2>
 				</div>
 
-				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+				<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
 					<div class="card-body">
-						<form action="" method="post">
+						<form action="doUpdateUser" method="post">
 							<div class="table-responsive bg-light">
 									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th scope="col">Username</th>
 												<th scope="col">Email</th>
-												<th scope="col">Stato</th>
+												<th scope="col">Attivo</th>
 												<th scope="col">Registrazione</th>
 												<th scope="col">Ultimo Accesso</th>
 											</tr>
 										</thead>
 										<tbody>
-											<% users.forEach(function(man){ %>
+											<% if (typeof users !== 'undefined') {
+												users.forEach(function(man) { %>
 											<tr>
 												<td>
 													<%=man.username%>
@@ -102,7 +103,8 @@
 													<%=man.email%>
 												</td>
 												<td>
-													<input type="checkbox" <% if (man.stato === 'ATTIVO') { %>checked<% } %>>
+													<input name="id" type="hidden" value="<%=man.id%>">
+													<input name="stato" type="checkbox" <% if (man.stato === 'ATTIVO') { %>checked<% } %>>
 												</td>
 												<td>
 													<%=moment(man.data_registrazione).format('DD-MM-YYYY HH:mm:ss');%>
@@ -111,7 +113,7 @@
 													<%=moment(man.data_ultimo_accesso).format('DD-MM-YYYY HH:mm:ss');%>
 												</td>
 											</tr>
-											<% }); %>
+											<% });} %>
 										</tbody>
 									</table>
 								</div>
